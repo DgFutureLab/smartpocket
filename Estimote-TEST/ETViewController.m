@@ -15,6 +15,18 @@
 
 @implementation ETViewController
 
+- (IBAction)switchValueChanged:(id)sender {
+    NSLog(@"switch value changed");
+    UISwitch *changedSwitch = sender;
+    NSLog(@"tag:%ld", changedSwitch.tag);
+
+    if (changedSwitch.isOn) {
+        
+    }else{
+    
+    }
+}
+
 - (id)initWithScanType:(ESTScanType)scanType completion:(void (^)(ESTBeacon *))completion
 {
     self = [super init];
@@ -39,11 +51,16 @@
     
     [self.beaconManager startRangingBeaconsInRegion:self.region];
     [self.beaconManager startEstimoteBeaconsDiscoveryForRegion:self.region];
+    [self.beaconManager startMonitoringForRegion:self.beaconRegion];
+
     
     self.majorArray = @[self.major1, self.major2, self.major3, self.major4];
     self.minorArray = @[self.minor1, self.minor2, self.minor3, self.minor4];
     self.distArray  = @[self.dist1, self.dist2, self.dist3, self.dist4];
+    
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -55,6 +72,19 @@
 {
     self.beaconsArray = beacons;
     [self pushBeaconInfo];
+
+    //notification
+    
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
+    NSDate* date = [NSDate date];
+    NSString* dateStr = [formatter stringFromDate:date];
+    notification.alertBody = [NSString stringWithFormat:@"忘れ物発見!:%@", dateStr];
+    notification.applicationIconBadgeNumber = 1;
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 - (void)beaconManager:(ESTBeaconManager *)manager didDiscoverBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
@@ -86,5 +116,6 @@
         }
     }
 }
+
 
 @end
