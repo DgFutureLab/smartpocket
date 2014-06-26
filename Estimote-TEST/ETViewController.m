@@ -1,0 +1,90 @@
+//
+//  ETViewController.m
+//  Estimote-TEST
+//
+//  Created by アンディット ヘリスティヨ on 2014/06/18.
+//  Copyright (c) 2014年 Digital Garage. All rights reserved.
+//
+
+#import "ETViewController.h"
+#import <AudioToolbox/AudioServices.h>
+
+@interface ETViewController () <ESTBeaconManagerDelegate>
+
+@end
+
+@implementation ETViewController
+
+- (id)initWithScanType:(ESTScanType)scanType completion:(void (^)(ESTBeacon *))completion
+{
+    self = [super init];
+    if (self) {
+        self.scanType = scanType;
+        self.completion = [completion copy];
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+    
+    
+    
+    self.beaconManager = [[ESTBeaconManager alloc] init];
+    self.beaconManager.delegate = self;
+    
+    self.region = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID identifier:@"EstimoteSampleRegion"];
+    
+    [self.beaconManager startRangingBeaconsInRegion:self.region];
+    [self.beaconManager startEstimoteBeaconsDiscoveryForRegion:self.region];
+    
+    self.majorArray = @[self.major1, self.major2, self.major3, self.major4];
+    self.minorArray = @[self.minor1, self.minor2, self.minor3, self.minor4];
+    self.distArray  = @[self.dist1, self.dist2, self.dist3, self.dist4];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)beaconManager:(ESTBeaconManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
+{
+    self.beaconsArray = beacons;
+    [self pushBeaconInfo];
+}
+
+- (void)beaconManager:(ESTBeaconManager *)manager didDiscoverBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
+{
+    self.beaconsArray = beacons;
+    [self pushBeaconInfo];
+}
+
+- (void)pushBeaconInfo
+{
+    for (int i = 0; i < self.beaconsArray.count; i++) {
+        NSString *beaconMajorString = [((ESTBeacon *) self.beaconsArray[i]).major stringValue];
+        NSString *beaconMinorString = [((ESTBeacon *) self.beaconsArray[i]).minor stringValue];
+        
+        NSNumber *beacondist = ((ESTBeacon *) self.beaconsArray[i]).distance;
+        
+        // Beacon Major
+        ((UILabel *) self.majorArray[i]).text = beaconMajorString;
+        
+        // Beacon Minor
+        ((UILabel *) self.minorArray[i]).text = beaconMinorString;
+        
+        // Beacon Distance
+        if ( (beacondist) && (![[beacondist stringValue] isEqualToString: @"-1"]) ) {
+            ((UILabel *) self.distArray[i]).text = [NSString stringWithFormat:@"%.02f", [beacondist floatValue]];
+            if ([beacondist floatValue] < 2.0) {
+                ((UILabel *) self.distArray[i]).backgroundColor = [UIColor colorWithRed:(2.0 - [beacondist floatValue])/2.0 green:0.0 blue:[beacondist floatValue]/2.0 alpha:1.0];
+            }
+        }
+    }
+}
+
+@end
