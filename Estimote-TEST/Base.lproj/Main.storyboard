@@ -160,6 +160,13 @@
                                     <action selector="switchValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="PZL-9q-UnF"/>
                                 </connections>
                             </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqX-V0-Oko">
+                                <rect key="frame" x="59" y="408" width="203" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -172,6 +179,7 @@
                         <outlet property="major2" destination="j1v-ns-Iqz" id="z6N-oC-zKe"/>
                         <outlet property="major3" destination="464-am-Dqo" id="DQO-lV-1Yd"/>
                         <outlet property="major4" destination="BMb-c8-HBG" id="WDx-Wa-Ind"/>
+                        <outlet property="messageLabel" destination="oqX-V0-Oko" id="Aek-IT-tpy"/>
                         <outlet property="minor1" destination="InI-AS-wXq" id="ljz-4r-jrd"/>
                         <outlet property="minor2" destination="cdc-CT-hem" id="uSk-AW-xmq"/>
                         <outlet property="minor3" destination="ClI-kY-fhU" id="MTC-se-WA2"/>

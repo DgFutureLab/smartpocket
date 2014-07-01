@@ -26,11 +26,15 @@ typedef enum : int
 @property (nonatomic, copy) void (^completion)(ESTBeacon *);
 @property (nonatomic, assign) ESTScanType scanType;
 
+// 管理するもののセンサー郡
 @property (nonatomic, strong) ESTBeaconManager *beaconManager;
-@property (nonatomic, strong) ESTBeaconRegion *region;
 @property (nonatomic, strong) ESTBeaconRegion   *beaconRegion;
-
 @property (strong, nonatomic) NSArray *beaconsArray;
+
+// keyとなるセンサー
+@property (nonatomic, strong) ESTBeaconManager *beaconManagerForKey;
+@property (nonatomic, strong) ESTBeaconRegion   *beaconRegionForKey;
+@property (nonatomic, strong) ESTBeacon         *beaconForKey;
 
 @property (strong, nonatomic) IBOutlet UILabel *major1;
 @property (strong, nonatomic) IBOutlet UILabel *minor1;
@@ -44,6 +48,8 @@ typedef enum : int
 @property (strong, nonatomic) IBOutlet UILabel *major4;
 @property (strong, nonatomic) IBOutlet UILabel *minor4;
 @property (strong, nonatomic) IBOutlet UILabel *dist4;
+@property (strong, nonatomic) IBOutlet UILabel *messageLabel;
+
 @property (strong, nonatomic) NSArray *majorArray;
 @property (strong, nonatomic) NSArray *minorArray;
 @property (strong, nonatomic) NSArray *distArray;
