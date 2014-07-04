@@ -37,57 +37,16 @@
     return self;
 }
 
-//- (id)initWithBeacon:(ESTBeacon*)beacon
-//{
-//    self = [self init];
-//    if (self)
-//    {
-//        self.beaconForKey = beacon;
-//    }
-//    return self;
-//}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.beaconManager = [[ESTBeaconManager alloc] init];
+    self.beaconManager.delegate = self;
+    self.beaconRegion = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID identifier:@"EstimoteSampleRegion"];
+    [self.beaconManager startRangingBeaconsInRegion:self.beaconRegion];
+    [self.beaconManager startEstimoteBeaconsDiscoveryForRegion:self.beaconRegion];
     
-    
-    self.beaconManager1 = [[ESTBeaconManager alloc] init];
-    self.beaconManager1.delegate = self;
-    self.beaconManager2 = [[ESTBeaconManager alloc] init];
-    self.beaconManager2.delegate = self;
-    self.beaconManager3 = [[ESTBeaconManager alloc] init];
-    self.beaconManager3.delegate = self;
-    self.beaconManager4 = [[ESTBeaconManager alloc] init];
-    self.beaconManager4.delegate = self;
-    
-    self.beaconRegion1 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:41374 minor:63236 identifier:@"region1"];//
-    self.beaconRegion2 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:1639 minor:35798 identifier:@"region2"];// 緑
-    self.beaconRegion3 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:26751 minor:29190 identifier:@"region3"];//青
-    self.beaconRegion4 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:20826 minor:14135 identifier:@"region4"];//紫
-    
-    self.beaconRegion1.notifyOnEntry = true;
-    self.beaconRegion1.notifyOnExit = true;
-    self.beaconRegion2.notifyOnEntry = true;
-    self.beaconRegion2.notifyOnExit = true;
-    self.beaconRegion3.notifyOnEntry = true;
-    self.beaconRegion3.notifyOnExit = true;
-    self.beaconRegion4.notifyOnEntry = true;
-    self.beaconRegion4.notifyOnExit = true;
-    
-    [self.beaconManager1 startRangingBeaconsInRegion:self.beaconRegion1];
-    [self.beaconManager1 startEstimoteBeaconsDiscoveryForRegion:self.beaconRegion1];
-    [self.beaconManager1 startMonitoringForRegion:self.beaconRegion1];
-    [self.beaconManager2 startRangingBeaconsInRegion:self.beaconRegion2];
-    [self.beaconManager2 startEstimoteBeaconsDiscoveryForRegion:self.beaconRegion2];
-    [self.beaconManager2 startMonitoringForRegion:self.beaconRegion2];
-    [self.beaconManager3 startRangingBeaconsInRegion:self.beaconRegion3];
-    [self.beaconManager3 startEstimoteBeaconsDiscoveryForRegion:self.beaconRegion3];
-    [self.beaconManager3 startMonitoringForRegion:self.beaconRegion3];
-    [self.beaconManager4 startRangingBeaconsInRegion:self.beaconRegion4];
-    [self.beaconManager4 startEstimoteBeaconsDiscoveryForRegion:self.beaconRegion4];
-    [self.beaconManager4 startMonitoringForRegion:self.beaconRegion4];
     
     self.majorArray = @[self.major1, self.major2, self.major3, self.major4];
     self.minorArray = @[self.minor1, self.minor2, self.minor3, self.minor4];
@@ -108,12 +67,13 @@
 
 - (void)beaconManager:(ESTBeaconManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
-//    [self pushBeaconInfo];
+    self.beaconsArray = beacons;
+    [self pushBeaconInfo];
     
     
     
     // message label
-//    self   
+//    self
 //    
 //    if ((unsigned long)self.beaconsArray.count >= 3) {
 //        self.messageLabel.text = [NSString stringWithFormat:@"忘れ物なし！ %lu", (unsigned long)self.beaconsArray.count];
@@ -139,79 +99,76 @@
 
 - (void)beaconManager:(ESTBeaconManager *)manager didDiscoverBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
-    if (manager == self.beaconManager1) {
-        self.beacon1 = [beacons objectAtIndex:0];
-    }else if (manager == self.beaconManager2){
-        self.beacon2 = [beacons objectAtIndex:0];
-    }else if (manager == self.beaconManager3){
-        self.beacon3 = [beacons objectAtIndex:0];
-    }
-//    [self pushBeaconInfo];
+    self.beaconsArray = beacons;
+    [self pushBeaconInfo];
 }
 
-//- (void)pushBeaconInfo
-//{
-//    for (int i = 0; i < self.beaconsArray.count; i++) {
-//        NSString *beaconMajorString = [((ESTBeacon *) self.beaconsArray[i]).major stringValue];
-//        NSString *beaconMinorString = [((ESTBeacon *) self.beaconsArray[i]).minor stringValue];
-//        
-//        NSNumber *beacondist = ((ESTBeacon *) self.beaconsArray[i]).distance;
-//        
-//        // Beacon Major
-//        ((UILabel *) self.majorArray[i]).text = beaconMajorString;
-//        
-//        // Beacon Minor
-//        ((UILabel *) self.minorArray[i]).text = beaconMinorString;
-//        
-//        // Beacon Distance
-//        if ( (beacondist) && (![[beacondist stringValue] isEqualToString: @"-1"]) ) {
-//            ((UILabel *) self.distArray[i]).text = [NSString stringWithFormat:@"%.02f", [beacondist floatValue]];
-//            if ([beacondist floatValue] < 2.0) {
-//                ((UILabel *) self.distArray[i]).backgroundColor = [UIColor colorWithRed:(2.0 - [beacondist floatValue])/2.0 green:0.0 blue:[beacondist floatValue]/2.0 alpha:1.0];
-//            }
-//        }
-//    }
-//}
+- (void)pushBeaconInfo
+{
+    for (int i = 0; i < self.beaconsArray.count; i++) {
+//        NSLog(@"%d", [[self.beaconsArray objectAtIndex:i] major].intValue);
+        NSString *beaconMajorString = [((ESTBeacon *) self.beaconsArray[i]).major stringValue];
+        NSString *beaconMinorString = [((ESTBeacon *) self.beaconsArray[i]).minor stringValue];
+        
+        NSNumber *beacondist = ((ESTBeacon *) self.beaconsArray[i]).distance;
+        // Beacon Major
+        ((UILabel *) self.majorArray[i]).text = beaconMajorString;
+        
+        // Beacon Minor
+        ((UILabel *) self.minorArray[i]).text = beaconMinorString;
+        
+        // Beacon Distance
+        if ( (beacondist) && (![[beacondist stringValue] isEqualToString: @"-1"]) ) {
+            ((UILabel *) self.distArray[i]).text = [NSString stringWithFormat:@"%.02f", [beacondist floatValue]];
+            if ([beacondist floatValue] < 2.0) {
+                ((UILabel *) self.distArray[i]).backgroundColor = [UIColor colorWithRed:(2.0 - [beacondist floatValue])/2.0 green:0.0 blue:[beacondist floatValue]/2.0 alpha:1.0];
+            }
+        }
+    }
+}
 #pragma mark - ESTBeaconManager delegate
 
 - (void)beaconManager:(ESTBeaconManager *)manager didEnterRegion:(ESTBeaconRegion *)region{
-    if ([region.identifier isEqualToString:@"region1"]) {
+    NSLog(@"Major 1%d", region.major.intValue);
+    if (region.major.intValue == 1639) {
         NSLog(@"beaconManager1 entered!");
         self.beacon1Image.hidden = false;
-    }else if ([region.identifier isEqualToString:@"region2"]){
+    }else if (region.major.intValue == 26751){
         NSLog(@"beaconManager2 entered!");
         self.beacon2Image.hidden = false;
-    }else if ([region.identifier isEqualToString:@"region3"]){
+    }else if (region.major.intValue == 20826){
         NSLog(@"beaconManager3 entered!");
         self.beacon3Image.hidden = false;
-    }else if ([region.identifier isEqualToString:@"regionForKey"]){
-        NSLog(@"beaconManagerForKey entered!");
+    }else if (region.major.intValue == -24162){
+        NSLog(@"beaconManager4 entered!");
+        self.beacon4Image.hidden = false;
     }
 }
 
 - (void)beaconManager:(ESTBeaconManager *)manager didExitRegion:(ESTBeaconRegion *)region{
-    if ([region.identifier isEqualToString:@"region1"]) {
+    NSLog(@"Major 1%d", region.major.intValue);
+    if (region.major.intValue == 1639) {
         NSLog(@"beaconManager1 exited!");
         self.beacon1Image.hidden = true;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Wallet!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    }else if ([region.identifier isEqualToString:@"region2"]){
+    }else if (region.major.intValue == 26751){
         NSLog(@"beaconManager2 exited!");
         self.beacon2Image.hidden = true;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Mac!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    }else if ([region.identifier isEqualToString:@"region3"]){
+    }else if (region.major.intValue == 20826){
         NSLog(@"beaconManager3 exited!");
         self.beacon3Image.hidden = true;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Notebook!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    }else if ([region.identifier isEqualToString:@"region4"]){
+    }else if (region.major.intValue == -24162){
         NSLog(@"beaconManager4 exited!");
         self.beacon4Image.hidden = true;
         UILocalNotification *notification = [UILocalNotification new];

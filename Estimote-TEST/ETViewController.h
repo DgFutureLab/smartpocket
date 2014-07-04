@@ -26,27 +26,14 @@ typedef enum : int
 @property (nonatomic, copy) void (^completion)(ESTBeacon *);
 @property (nonatomic, assign) ESTScanType scanType;
 
-// 管理するもののセンサー郡
-@property (nonatomic, strong) ESTBeaconManager *beaconManager1;
-@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion1;
-@property (nonatomic, strong) ESTBeacon        *beacon1;
-
-@property (nonatomic, strong) ESTBeaconManager *beaconManager2;
-@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion2;
-@property (nonatomic, strong) ESTBeacon        *beacon2;
-
-@property (nonatomic, strong) ESTBeaconManager *beaconManager3;
-@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion3;
-@property (nonatomic, strong) ESTBeacon        *beacon3;
-
-// keyとなるセンサー
-@property (nonatomic, strong) ESTBeaconManager *beaconManager4;
-@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion4;
-@property (nonatomic, strong) ESTBeacon        *beacon4;
+@property (nonatomic, strong) ESTBeaconManager *beaconManager;
+@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion;
+@property (nonatomic, strong) NSArray *beaconsArray;
 
 @property (strong, nonatomic) IBOutlet UILabel *major1;
 @property (strong, nonatomic) IBOutlet UILabel *minor1;
 @property (strong, nonatomic) IBOutlet UILabel *dist1;
+
 @property (strong, nonatomic) IBOutlet UILabel *major2;
 @property (strong, nonatomic) IBOutlet UILabel *minor2;
 @property (strong, nonatomic) IBOutlet UILabel *dist2;
