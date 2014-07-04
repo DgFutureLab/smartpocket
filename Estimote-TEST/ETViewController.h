@@ -27,14 +27,22 @@ typedef enum : int
 @property (nonatomic, assign) ESTScanType scanType;
 
 // 管理するもののセンサー郡
-@property (nonatomic, strong) ESTBeaconManager *beaconManager;
-@property (nonatomic, strong) ESTBeaconRegion   *beaconRegion;
-@property (strong, nonatomic) NSArray *beaconsArray;
+@property (nonatomic, strong) ESTBeaconManager *beaconManager1;
+@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion1;
+@property (nonatomic, strong) ESTBeacon        *beacon1;
+
+@property (nonatomic, strong) ESTBeaconManager *beaconManager2;
+@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion2;
+@property (nonatomic, strong) ESTBeacon        *beacon2;
+
+@property (nonatomic, strong) ESTBeaconManager *beaconManager3;
+@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion3;
+@property (nonatomic, strong) ESTBeacon        *beacon3;
 
 // keyとなるセンサー
-@property (nonatomic, strong) ESTBeaconManager *beaconManagerForKey;
-@property (nonatomic, strong) ESTBeaconRegion   *beaconRegionForKey;
-@property (nonatomic, strong) ESTBeacon         *beaconForKey;
+@property (nonatomic, strong) ESTBeaconManager *beaconManager4;
+@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion4;
+@property (nonatomic, strong) ESTBeacon        *beacon4;
 
 @property (strong, nonatomic) IBOutlet UILabel *major1;
 @property (strong, nonatomic) IBOutlet UILabel *minor1;
@@ -53,6 +61,12 @@ typedef enum : int
 @property (strong, nonatomic) NSArray *majorArray;
 @property (strong, nonatomic) NSArray *minorArray;
 @property (strong, nonatomic) NSArray *distArray;
+
+@property (weak, nonatomic) IBOutlet UIImageView *beacon1Image;
+@property (weak, nonatomic) IBOutlet UIImageView *beacon2Image;
+@property (weak, nonatomic) IBOutlet UIImageView *beacon3Image;
+@property (weak, nonatomic) IBOutlet UIImageView *beacon4Image;
+
 
 - (IBAction)switchValueChanged:(id)sender;
 
