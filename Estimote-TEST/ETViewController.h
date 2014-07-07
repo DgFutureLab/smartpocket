@@ -28,6 +28,11 @@ typedef enum : int
 
 @property (nonatomic, strong) ESTBeaconManager *beaconManager;
 @property (nonatomic, strong) ESTBeaconRegion  *beaconRegion;
+@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion1;
+@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion2;
+@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion3;
+@property (nonatomic, strong) ESTBeaconRegion  *beaconRegion4;
+
 @property (nonatomic, strong) NSArray *beaconsArray;
 
 @property (strong, nonatomic) IBOutlet UILabel *major1;

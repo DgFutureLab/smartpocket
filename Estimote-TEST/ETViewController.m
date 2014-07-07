@@ -16,15 +16,15 @@
 @implementation ETViewController
 
 - (IBAction)switchValueChanged:(id)sender {
-    NSLog(@"switch value changed");
-    UISwitch *changedSwitch = sender;
-    NSLog(@"tag:%ld", changedSwitch.tag);
-
-    if (changedSwitch.isOn) {
-        
-    }else{
-    
-    }
+//    NSLog(@"switch value changed");
+//    UISwitch *changedSwitch = sender;
+//    NSLog(@"tag:%ld", changedSwitch.tag);
+//
+//    if (changedSwitch.isOn) {
+//        
+//    }else{
+//    
+//    }
 }
 
 - (id)initWithScanType:(ESTScanType)scanType completion:(void (^)(ESTBeacon *))completion
@@ -44,7 +44,32 @@
     self.beaconManager = [[ESTBeaconManager alloc] init];
     self.beaconManager.delegate = self;
     self.beaconRegion = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID identifier:@"EstimoteSampleRegion"];
+    
+    self.beaconRegion1 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:41374 minor:63236 identifier:@"region1"];//
+    self.beaconRegion1.notifyOnExit = true;
+    
+    self.beaconRegion2 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:1639 minor:35798 identifier:@"region2"];// 緑
+    self.beaconRegion2.notifyOnExit = true;
+    
+    self.beaconRegion3 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:26751 minor:29190 identifier:@"region3"];//青
+    self.beaconRegion3.notifyOnExit = true;
+    
+    self.beaconRegion4 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:20826 minor:14135 identifier:@"region4"];//紫
+    self.beaconRegion4.notifyOnExit = true;
+    
     [self.beaconManager startRangingBeaconsInRegion:self.beaconRegion];
+
+    [self.beaconManager startRangingBeaconsInRegion:self.beaconRegion1];
+    [self.beaconManager startMonitoringForRegion:self.beaconRegion1];
+    
+    [self.beaconManager startRangingBeaconsInRegion:self.beaconRegion2];
+    [self.beaconManager startMonitoringForRegion:self.beaconRegion2];
+    
+    [self.beaconManager startRangingBeaconsInRegion:self.beaconRegion3];
+    [self.beaconManager startMonitoringForRegion:self.beaconRegion3];
+    
+    [self.beaconManager startRangingBeaconsInRegion:self.beaconRegion4];
+    [self.beaconManager startMonitoringForRegion:self.beaconRegion4];
     [self.beaconManager startEstimoteBeaconsDiscoveryForRegion:self.beaconRegion];
     
     
@@ -105,6 +130,7 @@
 
 - (void)pushBeaconInfo
 {
+    
     for (int i = 0; i < self.beaconsArray.count; i++) {
 //        NSLog(@"%d", [[self.beaconsArray objectAtIndex:i] major].intValue);
         NSString *beaconMajorString = [((ESTBeacon *) self.beaconsArray[i]).major stringValue];
@@ -129,7 +155,7 @@
 #pragma mark - ESTBeaconManager delegate
 
 - (void)beaconManager:(ESTBeaconManager *)manager didEnterRegion:(ESTBeaconRegion *)region{
-    NSLog(@"Major 1%d", region.major.intValue);
+    NSLog(@"entered!%d", region.major.intValue);
     if (region.major.intValue == 1639) {
         NSLog(@"beaconManager1 entered!");
         self.beacon1Image.hidden = false;
@@ -140,40 +166,42 @@
         NSLog(@"beaconManager3 entered!");
         self.beacon3Image.hidden = false;
     }else if (region.major.intValue == -24162){
+        
         NSLog(@"beaconManager4 entered!");
         self.beacon4Image.hidden = false;
     }
 }
 
 - (void)beaconManager:(ESTBeaconManager *)manager didExitRegion:(ESTBeaconRegion *)region{
+    NSLog(@"1:%d 2:%d 3:%d 4:%d", self.switch1.isOn, self.switch2.isOn, self.switch3.isOn, self.switch4.isOn);
     NSLog(@"Major 1%d", region.major.intValue);
-    if (region.major.intValue == 1639) {
+    if (region.major.intValue == 1639 && self.switch1.isOn) {
         NSLog(@"beaconManager1 exited!");
         self.beacon1Image.hidden = true;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Wallet!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    }else if (region.major.intValue == 26751){
+    }else if (region.major.intValue == 26751 && self.switch2.isOn){
         NSLog(@"beaconManager2 exited!");
         self.beacon2Image.hidden = true;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Mac!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    }else if (region.major.intValue == 20826){
+    }else if (region.major.intValue == 20826 && self.switch3.isOn){
         NSLog(@"beaconManager3 exited!");
         self.beacon3Image.hidden = true;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Notebook!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    }else if (region.major.intValue == -24162){
+    }else if (region.major.intValue == 41374 && self.switch4.isOn){
         NSLog(@"beaconManager4 exited!");
         self.beacon4Image.hidden = true;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
-        notification.alertBody = @"You forgot your umbrella!";
+        notification.alertBody = @"You forgot your Umbrella!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }
 }
