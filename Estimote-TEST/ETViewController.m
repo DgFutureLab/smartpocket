@@ -15,6 +15,9 @@
 
 @implementation ETViewController
 
+- (IBAction)beaconButton4Touched:(id)sender {
+}
+
 - (IBAction)switchValueChanged:(id)sender {
 //    NSLog(@"switch value changed");
 //    UISwitch *changedSwitch = sender;
@@ -76,6 +79,10 @@
     self.majorArray = @[self.major1, self.major2, self.major3, self.major4];
     self.minorArray = @[self.minor1, self.minor2, self.minor3, self.minor4];
     self.distArray  = @[self.dist1, self.dist2, self.dist3, self.dist4];
+    
+//    self.beacon1Image.layer.borderWidth = 3;
+//    [self.beacon1Image.layer setBorderColor:[[UIColor redColor] CGColor]];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,7 +100,7 @@
 - (void)beaconManager:(ESTBeaconManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
     self.beaconsArray = beacons;
-    [self pushBeaconInfo];
+//    [self pushBeaconInfo];
     
     
     
@@ -125,50 +132,49 @@
 - (void)beaconManager:(ESTBeaconManager *)manager didDiscoverBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
     self.beaconsArray = beacons;
-    [self pushBeaconInfo];
+//    [self pushBeaconInfo];
 }
 
-- (void)pushBeaconInfo
-{
-    
-    for (int i = 0; i < self.beaconsArray.count; i++) {
-//        NSLog(@"%d", [[self.beaconsArray objectAtIndex:i] major].intValue);
-        NSString *beaconMajorString = [((ESTBeacon *) self.beaconsArray[i]).major stringValue];
-        NSString *beaconMinorString = [((ESTBeacon *) self.beaconsArray[i]).minor stringValue];
-        
-        NSNumber *beacondist = ((ESTBeacon *) self.beaconsArray[i]).distance;
-        // Beacon Major
-        ((UILabel *) self.majorArray[i]).text = beaconMajorString;
-        
-        // Beacon Minor
-        ((UILabel *) self.minorArray[i]).text = beaconMinorString;
-        
-        // Beacon Distance
-        if ( (beacondist) && (![[beacondist stringValue] isEqualToString: @"-1"]) ) {
-            ((UILabel *) self.distArray[i]).text = [NSString stringWithFormat:@"%.02f", [beacondist floatValue]];
-            if ([beacondist floatValue] < 2.0) {
-                ((UILabel *) self.distArray[i]).backgroundColor = [UIColor colorWithRed:(2.0 - [beacondist floatValue])/2.0 green:0.0 blue:[beacondist floatValue]/2.0 alpha:1.0];
-            }
-        }
-    }
-}
+//- (void)pushBeaconInfo
+//{
+//    
+//    for (int i = 0; i < self.beaconsArray.count; i++) {
+////        NSLog(@"%d", [[self.beaconsArray objectAtIndex:i] major].intValue);
+//        NSString *beaconMajorString = [((ESTBeacon *) self.beaconsArray[i]).major stringValue];
+//        NSString *beaconMinorString = [((ESTBeacon *) self.beaconsArray[i]).minor stringValue];
+//        
+//        NSNumber *beacondist = ((ESTBeacon *) self.beaconsArray[i]).distance;
+//        // Beacon Major
+//        ((UILabel *) self.majorArray[i]).text = beaconMajorString;
+//        
+//        // Beacon Minor
+//        ((UILabel *) self.minorArray[i]).text = beaconMinorString;
+//        
+//        // Beacon Distance
+//        if ( (beacondist) && (![[beacondist stringValue] isEqualToString: @"-1"]) ) {
+//            ((UILabel *) self.distArray[i]).text = [NSString stringWithFormat:@"%.02f", [beacondist floatValue]];
+//            if ([beacondist floatValue] < 2.0) {
+//                ((UILabel *) self.distArray[i]).backgroundColor = [UIColor colorWithRed:(2.0 - [beacondist floatValue])/2.0 green:0.0 blue:[beacondist floatValue]/2.0 alpha:1.0];
+//            }
+//        }
+//    }
+//}
 #pragma mark - ESTBeaconManager delegate
 
 - (void)beaconManager:(ESTBeaconManager *)manager didEnterRegion:(ESTBeaconRegion *)region{
     NSLog(@"entered!%d", region.major.intValue);
     if (region.major.intValue == 1639) {
         NSLog(@"beaconManager1 entered!");
-        self.beacon1Image.hidden = false;
+        self.beaconButton1.highlighted = false;
     }else if (region.major.intValue == 26751){
         NSLog(@"beaconManager2 entered!");
-        self.beacon2Image.hidden = false;
+        self.beaconButton2.highlighted = false;
     }else if (region.major.intValue == 20826){
         NSLog(@"beaconManager3 entered!");
-        self.beacon3Image.hidden = false;
+        self.beaconButton3.highlighted = false;
     }else if (region.major.intValue == -24162){
-        
         NSLog(@"beaconManager4 entered!");
-        self.beacon4Image.hidden = false;
+        self.beaconButton4.highlighted = false;
     }
 }
 
@@ -177,28 +183,27 @@
     NSLog(@"Major 1%d", region.major.intValue);
     if (region.major.intValue == 1639 && self.switch1.isOn) {
         NSLog(@"beaconManager1 exited!");
-        self.beacon1Image.hidden = true;
+        self.beaconButton1.highlighted = true;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Wallet!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }else if (region.major.intValue == 26751 && self.switch2.isOn){
         NSLog(@"beaconManager2 exited!");
-        self.beacon2Image.hidden = true;
+        self.beaconButton2.highlighted = true;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Mac!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }else if (region.major.intValue == 20826 && self.switch3.isOn){
         NSLog(@"beaconManager3 exited!");
-        self.beacon3Image.hidden = true;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Notebook!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }else if (region.major.intValue == 41374 && self.switch4.isOn){
         NSLog(@"beaconManager4 exited!");
-        self.beacon4Image.hidden = true;
+        self.beaconButton4.highlighted = true;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Umbrella!";
@@ -207,5 +212,9 @@
 }
 
 
+
+- (IBAction)beaconButtonTouched:(id)sender {
+    NSLog(@"foo");
+}
 
 @end

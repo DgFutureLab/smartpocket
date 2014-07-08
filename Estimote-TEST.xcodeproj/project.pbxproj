@@ -30,6 +30,11 @@
 		B241C11C19668E7600862046 /* note.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B241C11919668E7500862046 /* note.jpeg */; };
 		B241C11D19668E7600862046 /* wallet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B241C11A19668E7500862046 /* wallet.jpg */; };
 		B241C11F1966A0B100862046 /* umbrella.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B241C11E1966A0B100862046 /* umbrella.jpg */; };
+		B241C121196BE94300862046 /* plus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B241C120196BE94300862046 /* plus.jpg */; };
+		B241C128196BFAD700862046 /* prob.png in Resources */ = {isa = PBXBuildFile; fileRef = B241C126196BFAD700862046 /* prob.png */; };
+		B241C129196BFAD700862046 /* ok.png in Resources */ = {isa = PBXBuildFile; fileRef = B241C127196BFAD700862046 /* ok.png */; };
+		B241C12C196BFC9D00862046 /* prob2.png in Resources */ = {isa = PBXBuildFile; fileRef = B241C12A196BFC9D00862046 /* prob2.png */; };
+		B241C12D196BFC9D00862046 /* ok2.png in Resources */ = {isa = PBXBuildFile; fileRef = B241C12B196BFC9D00862046 /* ok2.png */; };
 		B8F4565ED483426184747441 /* libPods-Estimote-TEST.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B6A334879E43798CA5AF48 /* libPods-Estimote-TEST.a */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +78,11 @@
 		B241C11919668E7500862046 /* note.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = note.jpeg; sourceTree = "<group>"; };
 		B241C11A19668E7500862046 /* wallet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallet.jpg; sourceTree = "<group>"; };
 		B241C11E1966A0B100862046 /* umbrella.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = umbrella.jpg; sourceTree = "<group>"; };
+		B241C120196BE94300862046 /* plus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plus.jpg; sourceTree = "<group>"; };
+		B241C126196BFAD700862046 /* prob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prob.png; sourceTree = "<group>"; };
+		B241C127196BFAD700862046 /* ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok.png; sourceTree = "<group>"; };
+		B241C12A196BFC9D00862046 /* prob2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prob2.png; sourceTree = "<group>"; };
+		B241C12B196BFC9D00862046 /* ok2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok2.png; sourceTree = "<group>"; };
 		C7B6A334879E43798CA5AF48 /* libPods-Estimote-TEST.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Estimote-TEST.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -150,6 +160,11 @@
 		7378F35119518AF800F76B91 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B241C12A196BFC9D00862046 /* prob2.png */,
+				B241C12B196BFC9D00862046 /* ok2.png */,
+				B241C126196BFAD700862046 /* prob.png */,
+				B241C127196BFAD700862046 /* ok.png */,
+				B241C120196BE94300862046 /* plus.jpg */,
 				B241C11E1966A0B100862046 /* umbrella.jpg */,
 				B241C11819668E7500862046 /* mac.jpg */,
 				B241C11919668E7500862046 /* note.jpeg */,
@@ -268,12 +283,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B241C11B19668E7600862046 /* mac.jpg in Resources */,
+				B241C12C196BFC9D00862046 /* prob2.png in Resources */,
 				73AF193919594CD9002D6A8D /* magus.gif in Resources */,
 				7378F36319518AF800F76B91 /* Images.xcassets in Resources */,
 				73AF193C19594D3E002D6A8D /* cardBack.png in Resources */,
+				B241C128196BFAD700862046 /* prob.png in Resources */,
+				B241C129196BFAD700862046 /* ok.png in Resources */,
+				B241C121196BE94300862046 /* plus.jpg in Resources */,
 				73AF193819594CD9002D6A8D /* lucca.gif in Resources */,
 				7378F35519518AF800F76B91 /* InfoPlist.strings in Resources */,
 				73AF193719594CD9002D6A8D /* chrono.png in Resources */,
+				B241C12D196BFC9D00862046 /* ok2.png in Resources */,
 				B241C11D19668E7600862046 /* wallet.jpg in Resources */,
 				7378F35E19518AF800F76B91 /* Main.storyboard in Resources */,
 				73AF193A19594CD9002D6A8D /* marle.png in Resources */,

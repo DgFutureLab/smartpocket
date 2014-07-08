@@ -54,11 +54,11 @@ typedef enum : int
 @property (strong, nonatomic) NSArray *minorArray;
 @property (strong, nonatomic) NSArray *distArray;
 
-@property (weak, nonatomic) IBOutlet UIImageView *beacon1Image;
-@property (weak, nonatomic) IBOutlet UIImageView *beacon2Image;
-@property (weak, nonatomic) IBOutlet UIImageView *beacon3Image;
-@property (weak, nonatomic) IBOutlet UIImageView *beacon4Image;
-
+@property (weak, nonatomic) IBOutlet UIButton *beaconButton1;
+@property (weak, nonatomic) IBOutlet UIButton *beaconButton2;
+@property (weak, nonatomic) IBOutlet UIButton *beaconButton3;
+@property (weak, nonatomic) IBOutlet UIButton *beaconButton4;
+- (IBAction)beaconButtonTouched:(id)sender;
 
 - (IBAction)switchValueChanged:(id)sender;
 
