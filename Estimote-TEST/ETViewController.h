@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <ESTBeaconManager.h>
 #import <ESTBeacon.h>
-
+#import "ESTDistanceDemoVC.h"
 typedef enum : int
 {
     ESTScanTypeBlueTooth,

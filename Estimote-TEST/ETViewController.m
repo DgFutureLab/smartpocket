@@ -211,10 +211,25 @@
     }
 }
 
-
-
 - (IBAction)beaconButtonTouched:(id)sender {
-    NSLog(@"foo");
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    ESTDistanceDemoVC *distanceViewController = [segue destinationViewController];
+    if([[segue identifier] isEqualToString:@"1"]) {
+        distanceViewController.beacon = [self.beaconsArray objectAtIndex:0];
+        distanceViewController.beaconImage = [UIImage imageNamed:@"wallet.jpg"];
+      }
+    else if ([[segue identifier] isEqualToString:@"2"]){
+        distanceViewController.beacon = [self.beaconsArray objectAtIndex:0];
+        distanceViewController.beaconImage = [UIImage imageNamed:@"mac.jpg"];
+    }else if ([[segue identifier] isEqualToString:@"3"]){
+        distanceViewController.beacon = [self.beaconsArray objectAtIndex:0];
+        distanceViewController.beaconImage = [UIImage imageNamed:@"note.jpeg"];
+    }else if ([[segue identifier] isEqualToString:@"4"]){
+        distanceViewController.beacon = [self.beaconsArray objectAtIndex:0];
+        distanceViewController.beaconImage = [UIImage imageNamed:@"umbrella.jpg"];
+    }
 }
 
 @end

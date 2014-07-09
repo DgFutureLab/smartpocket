@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>B757B4B1-559D-4FE9-9237-B09961FAE4B9</string>
+	<string>74C776AA-AB36-49F5-84EC-F050406F6A1B</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Estimote-TEST</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9CA6B140-ADFC-41BC-8424-5635C76C2DF9</key>
-		<string>https://github.com/DgFutureLab/cardfind.git</string>
+		<key>866521CD-1C08-4B8E-9450-7F943D46CD8B</key>
+		<string>https://github.com/DgFutureLab/smartpocket.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Estimote-TEST.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9CA6B140-ADFC-41BC-8424-5635C76C2DF9</key>
+		<key>866521CD-1C08-4B8E-9450-7F943D46CD8B</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/DgFutureLab/cardfind.git</string>
+	<string>https://github.com/DgFutureLab/smartpocket.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9CA6B140-ADFC-41BC-8424-5635C76C2DF9</string>
+	<string>866521CD-1C08-4B8E-9450-7F943D46CD8B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9CA6B140-ADFC-41BC-8424-5635C76C2DF9</string>
+			<string>866521CD-1C08-4B8E-9450-7F943D46CD8B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>cardfind</string>
 		</dict>

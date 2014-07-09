@@ -35,6 +35,10 @@
 		B241C129196BFAD700862046 /* ok.png in Resources */ = {isa = PBXBuildFile; fileRef = B241C127196BFAD700862046 /* ok.png */; };
 		B241C12C196BFC9D00862046 /* prob2.png in Resources */ = {isa = PBXBuildFile; fileRef = B241C12A196BFC9D00862046 /* prob2.png */; };
 		B241C12D196BFC9D00862046 /* ok2.png in Resources */ = {isa = PBXBuildFile; fileRef = B241C12B196BFC9D00862046 /* ok2.png */; };
+		B2CE2526196D2AA8000C1A84 /* ESTDistanceDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CE2525196D2AA8000C1A84 /* ESTDistanceDemoVC.m */; };
+		B2CE2528196D393A000C1A84 /* distance_bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2527196D393A000C1A84 /* distance_bkg.png */; };
+		B2CE252A196D3B21000C1A84 /* dotImage.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2529196D3B21000C1A84 /* dotImage.png */; };
+		B2CE252C196D3B68000C1A84 /* beacon_linear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE252B196D3B68000C1A84 /* beacon_linear@2x.png */; };
 		B8F4565ED483426184747441 /* libPods-Estimote-TEST.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B6A334879E43798CA5AF48 /* libPods-Estimote-TEST.a */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +87,11 @@
 		B241C127196BFAD700862046 /* ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok.png; sourceTree = "<group>"; };
 		B241C12A196BFC9D00862046 /* prob2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prob2.png; sourceTree = "<group>"; };
 		B241C12B196BFC9D00862046 /* ok2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok2.png; sourceTree = "<group>"; };
+		B2CE2524196D2AA8000C1A84 /* ESTDistanceDemoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESTDistanceDemoVC.h; sourceTree = "<group>"; };
+		B2CE2525196D2AA8000C1A84 /* ESTDistanceDemoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESTDistanceDemoVC.m; sourceTree = "<group>"; };
+		B2CE2527196D393A000C1A84 /* distance_bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distance_bkg.png; sourceTree = "<group>"; };
+		B2CE2529196D3B21000C1A84 /* dotImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dotImage.png; sourceTree = "<group>"; };
+		B2CE252B196D3B68000C1A84 /* beacon_linear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beacon_linear@2x.png"; sourceTree = "<group>"; };
 		C7B6A334879E43798CA5AF48 /* libPods-Estimote-TEST.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Estimote-TEST.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -151,6 +160,8 @@
 				7378F35C19518AF800F76B91 /* Main.storyboard */,
 				7378F35F19518AF800F76B91 /* ETViewController.h */,
 				7378F36019518AF800F76B91 /* ETViewController.m */,
+				B2CE2524196D2AA8000C1A84 /* ESTDistanceDemoVC.h */,
+				B2CE2525196D2AA8000C1A84 /* ESTDistanceDemoVC.m */,
 				7378F36219518AF800F76B91 /* Images.xcassets */,
 				7378F35119518AF800F76B91 /* Supporting Files */,
 			);
@@ -160,6 +171,9 @@
 		7378F35119518AF800F76B91 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B2CE252B196D3B68000C1A84 /* beacon_linear@2x.png */,
+				B2CE2529196D3B21000C1A84 /* dotImage.png */,
+				B2CE2527196D393A000C1A84 /* distance_bkg.png */,
 				B241C12A196BFC9D00862046 /* prob2.png */,
 				B241C12B196BFC9D00862046 /* ok2.png */,
 				B241C126196BFAD700862046 /* prob.png */,
@@ -290,11 +304,14 @@
 				B241C128196BFAD700862046 /* prob.png in Resources */,
 				B241C129196BFAD700862046 /* ok.png in Resources */,
 				B241C121196BE94300862046 /* plus.jpg in Resources */,
+				B2CE252A196D3B21000C1A84 /* dotImage.png in Resources */,
 				73AF193819594CD9002D6A8D /* lucca.gif in Resources */,
 				7378F35519518AF800F76B91 /* InfoPlist.strings in Resources */,
 				73AF193719594CD9002D6A8D /* chrono.png in Resources */,
 				B241C12D196BFC9D00862046 /* ok2.png in Resources */,
 				B241C11D19668E7600862046 /* wallet.jpg in Resources */,
+				B2CE2528196D393A000C1A84 /* distance_bkg.png in Resources */,
+				B2CE252C196D3B68000C1A84 /* beacon_linear@2x.png in Resources */,
 				7378F35E19518AF800F76B91 /* Main.storyboard in Resources */,
 				73AF193A19594CD9002D6A8D /* marle.png in Resources */,
 				B241C11C19668E7600862046 /* note.jpeg in Resources */,
@@ -353,6 +370,7 @@
 				7378F36119518AF800F76B91 /* ETViewController.m in Sources */,
 				7378F35719518AF800F76B91 /* main.m in Sources */,
 				7378F35B19518AF800F76B91 /* ETAppDelegate.m in Sources */,
+				B2CE2526196D2AA8000C1A84 /* ESTDistanceDemoVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
