@@ -50,15 +50,28 @@
     
     self.beaconRegion1 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:41374 minor:63236 identifier:@"region1"];//
     self.beaconRegion1.notifyOnExit = true;
+    self.beaconRegion1.notifyOnEntry = true;
+    self.beacon1StatusImageFound.hidden = true;
+    self.beacon1StatusImageNotFound.hidden = true;
     
     self.beaconRegion2 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:1639 minor:35798 identifier:@"region2"];// 緑
     self.beaconRegion2.notifyOnExit = true;
+    self.beaconRegion2.notifyOnEntry = true;
+    self.beacon2StatusImageFound.hidden = true;
+    self.beacon2StatusImageNotFound.hidden = true;
     
     self.beaconRegion3 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:26751 minor:29190 identifier:@"region3"];//青
     self.beaconRegion3.notifyOnExit = true;
-    
+    self.beaconRegion3.notifyOnEntry = true;
+    self.beacon3StatusImageFound.hidden = true;
+    self.beacon3StatusImageNotFound.hidden = true;
+
     self.beaconRegion4 = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID major:20826 minor:14135 identifier:@"region4"];//紫
     self.beaconRegion4.notifyOnExit = true;
+    self.beaconRegion4.notifyOnEntry = true;
+    self.beacon4StatusImageFound.hidden = true;
+    self.beacon4StatusImageNotFound.hidden = true;
+
     
     [self.beaconManager startRangingBeaconsInRegion:self.beaconRegion];
 
@@ -73,6 +86,7 @@
     
     [self.beaconManager startRangingBeaconsInRegion:self.beaconRegion4];
     [self.beaconManager startMonitoringForRegion:self.beaconRegion4];
+
     [self.beaconManager startEstimoteBeaconsDiscoveryForRegion:self.beaconRegion];
     
     
@@ -100,6 +114,23 @@
 - (void)beaconManager:(ESTBeaconManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
     self.beaconsArray = beacons;
+    NSLog(@"foo");
+    for (int i = 0; i<beacons.count; i++) {
+        NSLog(@"didDiscoverBeacon:%d", [beacons[i] major].intValue);
+        if ([beacons[i] major].intValue  == 1639) {
+            self.beacon1StatusImageFound.hidden = false;
+            self.beacon1StatusImageNotFound.hidden = true;
+        }else if ([beacons[i] major].intValue  == 26751){
+            self.beacon2StatusImageFound.hidden = false;
+            self.beacon2StatusImageNotFound.hidden = true;
+        }else if ([beacons[i] major].intValue  == 20826){
+            self.beacon3StatusImageFound.hidden = false;
+            self.beacon3StatusImageNotFound.hidden = true;
+        }else if ([beacons[i] major].intValue  == 41374 | [beacons[i] major].intValue == -24162){
+            self.beacon4StatusImageFound.hidden = false;
+            self.beacon4StatusImageNotFound.hidden = true;
+        }
+    }
 //    [self pushBeaconInfo];
     
     
@@ -132,6 +163,8 @@
 - (void)beaconManager:(ESTBeaconManager *)manager didDiscoverBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
     self.beaconsArray = beacons;
+
+
 //    [self pushBeaconInfo];
 }
 
@@ -165,45 +198,54 @@
     NSLog(@"entered!%d", region.major.intValue);
     if (region.major.intValue == 1639) {
         NSLog(@"beaconManager1 entered!");
-        self.beaconButton1.highlighted = false;
+        self.beacon1StatusImageFound.hidden = false;
+        self.beacon1StatusImageNotFound.hidden = true;
     }else if (region.major.intValue == 26751){
         NSLog(@"beaconManager2 entered!");
-        self.beaconButton2.highlighted = false;
+        self.beacon2StatusImageFound.hidden = false;
+        self.beacon2StatusImageNotFound.hidden = true;
     }else if (region.major.intValue == 20826){
         NSLog(@"beaconManager3 entered!");
-        self.beaconButton3.highlighted = false;
-    }else if (region.major.intValue == -24162){
+        self.beacon3StatusImageFound.hidden = false;
+        self.beacon3StatusImageNotFound.hidden = true;
+    }else if (region.major.intValue == 41374){
         NSLog(@"beaconManager4 entered!");
-        self.beaconButton4.highlighted = false;
+        self.beacon4StatusImageFound.hidden = false;
+        self.beacon4StatusImageNotFound.hidden = true;
     }
 }
 
 - (void)beaconManager:(ESTBeaconManager *)manager didExitRegion:(ESTBeaconRegion *)region{
     NSLog(@"1:%d 2:%d 3:%d 4:%d", self.switch1.isOn, self.switch2.isOn, self.switch3.isOn, self.switch4.isOn);
-    NSLog(@"Major 1%d", region.major.intValue);
+    NSLog(@"Major%d :::check:%d", region.major.intValue, region.major.intValue == 41374);
     if (region.major.intValue == 1639 && self.switch1.isOn) {
         NSLog(@"beaconManager1 exited!");
-        self.beaconButton1.highlighted = true;
+        self.beacon1StatusImageFound.hidden = true;
+        self.beacon1StatusImageNotFound.hidden = false;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Wallet!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }else if (region.major.intValue == 26751 && self.switch2.isOn){
         NSLog(@"beaconManager2 exited!");
-        self.beaconButton2.highlighted = true;
+        self.beacon2StatusImageFound.hidden = true;
+        self.beacon2StatusImageNotFound.hidden = false;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Mac!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }else if (region.major.intValue == 20826 && self.switch3.isOn){
         NSLog(@"beaconManager3 exited!");
+        self.beacon3StatusImageFound.hidden = true;
+        self.beacon3StatusImageNotFound.hidden = false;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Notebook!";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    }else if (region.major.intValue == 41374 && self.switch4.isOn){
+    }else if (region.major.intValue == 41374){
         NSLog(@"beaconManager4 exited!");
-        self.beaconButton4.highlighted = true;
+        self.beacon4StatusImageFound.hidden = true;
+        self.beacon4StatusImageNotFound.hidden = false;
         UILocalNotification *notification = [UILocalNotification new];
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"You forgot your Umbrella!";
@@ -230,6 +272,27 @@
         distanceViewController.beacon = [self.beaconsArray objectAtIndex:0];
         distanceViewController.beaconImage = [UIImage imageNamed:@"umbrella.jpg"];
     }
+}
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    bool doSegue = false;
+    if([identifier isEqualToString:@"1"]) {
+        if(!self.beacon1StatusImageFound.hidden){
+            doSegue = true;
+        }
+    }else if ([identifier isEqualToString:@"2"]){
+        if(!self.beacon2StatusImageFound.hidden){
+            doSegue = true;
+        }
+    }else if ([identifier isEqualToString:@"3"]){
+        if(!self.beacon3StatusImageFound.hidden){
+            doSegue = true;
+        }
+    }else if ([identifier isEqualToString:@"4"]){
+        if(!self.beacon4StatusImageFound.hidden){
+            doSegue = true;
+        }
+    }
+    return doSegue;
 }
 
 @end

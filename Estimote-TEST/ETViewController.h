@@ -58,6 +58,18 @@ typedef enum : int
 @property (weak, nonatomic) IBOutlet UIButton *beaconButton2;
 @property (weak, nonatomic) IBOutlet UIButton *beaconButton3;
 @property (weak, nonatomic) IBOutlet UIButton *beaconButton4;
+
+@property (weak, nonatomic) IBOutlet UIImageView *beacon1StatusImageFound;
+@property (weak, nonatomic) IBOutlet UIImageView *beacon2StatusImageFound;
+@property (weak, nonatomic) IBOutlet UIImageView *beacon3StatusImageFound;
+@property (weak, nonatomic) IBOutlet UIImageView *beacon4StatusImageFound;
+
+@property (weak, nonatomic) IBOutlet UIImageView *beacon1StatusImageNotFound;
+@property (weak, nonatomic) IBOutlet UIImageView *beacon2StatusImageNotFound;
+@property (weak, nonatomic) IBOutlet UIImageView *beacon3StatusImageNotFound;
+@property (weak, nonatomic) IBOutlet UIImageView *beacon4StatusImageNotFound;
+
+
 - (IBAction)beaconButtonTouched:(id)sender;
 
 - (IBAction)switchValueChanged:(id)sender;

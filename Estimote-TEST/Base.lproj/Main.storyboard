@@ -210,19 +210,35 @@
                                 </state>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ok2.png" translatesAutoresizingMaskIntoConstraints="NO" id="YvN-YJ-f4V">
-                                <rect key="frame" x="70" y="64" width="35" height="35"/>
+                                <rect key="frame" x="73" y="67" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="prob2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zwr-Wf-N5g">
+                                <rect key="frame" x="73" y="67" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ok2.png" translatesAutoresizingMaskIntoConstraints="NO" id="OR8-Rg-eHX">
-                                <rect key="frame" x="70" y="172" width="35" height="35"/>
+                                <rect key="frame" x="73" y="175" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="prob2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZCf-Ji-A9r">
+                                <rect key="frame" x="73" y="175" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ok2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Aei-Ht-JFq">
-                                <rect key="frame" x="285" y="64" width="35" height="35"/>
+                                <rect key="frame" x="288" y="67" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="prob.png" translatesAutoresizingMaskIntoConstraints="NO" id="5t8-6G-jgi">
-                                <rect key="frame" x="178" y="64" width="35" height="35"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="prob2.png" translatesAutoresizingMaskIntoConstraints="NO" id="9lv-TO-iF1">
+                                <rect key="frame" x="288" y="67" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ok2.png" translatesAutoresizingMaskIntoConstraints="NO" id="5t8-6G-jgi">
+                                <rect key="frame" x="181" y="67" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="prob2.png" translatesAutoresizingMaskIntoConstraints="NO" id="bTQ-Ol-K2T">
+                                <rect key="frame" x="181" y="67" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -230,6 +246,14 @@
                     </view>
                     <navigationItem key="navigationItem" title="ADHD Killer" id="hba-in-83b"/>
                     <connections>
+                        <outlet property="beacon1StatusImageFound" destination="YvN-YJ-f4V" id="2Uv-eb-xXT"/>
+                        <outlet property="beacon1StatusImageNotFound" destination="Zwr-Wf-N5g" id="Gl6-7t-D60"/>
+                        <outlet property="beacon2StatusImageFound" destination="5t8-6G-jgi" id="ZRc-J3-dHN"/>
+                        <outlet property="beacon2StatusImageNotFound" destination="bTQ-Ol-K2T" id="ZDd-AA-6n1"/>
+                        <outlet property="beacon3StatusImageFound" destination="Aei-Ht-JFq" id="b9s-3s-cv1"/>
+                        <outlet property="beacon3StatusImageNotFound" destination="9lv-TO-iF1" id="sYv-nV-FSm"/>
+                        <outlet property="beacon4StatusImageFound" destination="OR8-Rg-eHX" id="Ttp-UC-nYr"/>
+                        <outlet property="beacon4StatusImageNotFound" destination="ZCf-Ji-A9r" id="bzm-GF-gxs"/>
                         <outlet property="beaconButton1" destination="pcp-d3-Dhe" id="u7M-Zj-eEG"/>
                         <outlet property="beaconButton2" destination="Ij7-bo-SPq" id="fxU-IY-bpx"/>
                         <outlet property="beaconButton3" destination="4Hr-Y8-2tM" id="aJ9-qS-yrH"/>
@@ -296,7 +320,7 @@
         <image name="note.jpeg" width="226" height="223"/>
         <image name="ok2.png" width="256" height="256"/>
         <image name="plus.jpg" width="600" height="600"/>
-        <image name="prob.png" width="207" height="207"/>
+        <image name="prob2.png" width="207" height="207"/>
         <image name="umbrella.jpg" width="900" height="618"/>
         <image name="wallet.jpg" width="1200" height="800"/>
     </resources>
